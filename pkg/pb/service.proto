@@ -7,38 +7,124 @@ import "google/api/annotations.proto";
 import "github.com/envoyproxy/protoc-gen-validate/validate/validate.proto";
 import "protoc-gen-swagger/options/annotations.proto";
 import "github.com/infobloxopen/protoc-gen-gorm/options/gorm.proto";
+import "github.com/infobloxopen/atlas-app-toolkit/query/collection_operators.proto";
+import "google/protobuf/field_mask.proto";
+import "github.com/infobloxopen/protoc-gen-atlas-query-validate/options/query_validate.proto";
+import "github.com/infobloxopen/protoc-gen-atlas-validate/options/atlas_validate.proto";
 
 
 option go_package = "github.com/has1985/myapp/myapp/pkg/pb;pb";
 
-// The Myapp service, GetVersion RPC, and Version message
-// make up a simple "starter" example. It allows the Atlas CLI to generate an
-// end-to-end example for the sake of demonstration. Feel free to change 
-// GetVersion to better-suit how your versioning system, or get rid of it entirely.
+message Genre {
+  option (gorm.opts) = {
+    ormable: true
+  };
+  int32 id = 1 [(gorm.field).tag = {type: "serial" primary_key: true}];
+  string name = 2;
+}
 
-// Here are some helpful resources to aid you in your protobuf quest:
-// https://github.com/infobloxopen/atlas-contacts-app/blob/master/proto/contacts.proto
-// https://developers.google.com/protocol-buffers/docs/proto
-// https://github.com/grpc-ecosystem/grpc-gateway
-// https://developers.google.com/protocol-buffers/docs/style
+message Book {
+  option (gorm.opts) = {
+    ormable: true
+  };
+  int32 id = 1 [(gorm.field).tag = {type: "serial" primary_key: true}];
+  string name = 2[(atlas_validate.field).required = create];
+  float price = 3[(atlas_validate.field).required = create];
+  int32 genre = 4 [(gorm.field) = {reference_of: "Genre", tag: {type: "integer"}}, (atlas_validate.field).required = create];
+  int32 amount =5[(atlas_validate.field).required = create];
+}
 
-// Happy protobuffing!
-
-// TODO: Write a protobuf schema for the Myapp service. The 
-// messages and RPCs will compose the API for the service.
-
-// TODO: Structure your own protobuf messages. Each protocol buffer message is a 
-// small logical record of information, containing a series of name-value pairs.
 message VersionResponse {
   string version = 1;
 }
 
-// TODO: Define the Myapp service and its methods. Feel free
-// to change the name of Myapp to better-suit your naming
-// conventions.
+message CreateBookRequest {
+  Book payload  = 1;
+}
+
+message CreateBookResponse {
+  int32 id = 1;
+}
+
+message ReadBookRequest {
+  int32 id = 1;
+}
+
+message ReadBookResponse {
+  Book result = 1;
+}
+
+message UpdateBookRequest {
+  Book payload = 1;
+}
+
+message UpdateBookResponse {
+  Book result = 1;
+}
+
+message ListBookRequest {
+  infoblox.api.Filtering filter = 1;
+  infoblox.api.Sorting order_by = 2;
+  infoblox.api.FieldSelection fields = 3;
+  infoblox.api.Pagination paging = 4;
+}
+
+message ListBookResponse {
+  repeated Book results = 1;
+  infoblox.api.PageInfo page = 2;
+}
+
+message DeleteBookRequest {
+  int32 id = 1;
+}
+
+message DeleteBookResponse {}
+
 service Myapp {
+  option (gorm.server) = {
+    autogen: true,
+    txn_middleware: true,
+  };
+
+    rpc Create (CreateBookRequest) returns (CreateBookResponse) {
+    option (google.api.http) = {
+      post: "/books"
+      body: "payload"
+    };
+  }
+
+
+  rpc Read (ReadBookRequest) returns (ReadBookResponse) {
+    option (google.api.http) = {
+      get: "/books/{id}"
+    };
+  }
+
+  rpc Update (UpdateBookRequest) returns (UpdateBookResponse) {
+    option (google.api.http) = {
+      put: "/books/{payload.id}"
+      body: "payload"
+      additional_bindings: {
+        patch: "/books/{payload.id}"
+        body: "payload"
+      }
+    };
+  }
+
+  rpc List (ListBookRequest) returns (ListBookResponse) {
+    option (google.api.http) = {
+      get: "/books"
+    };
+  }
+
+  rpc Delete (DeleteBookRequest) returns (DeleteBookResponse) {
+    option (google.api.http) = {
+      delete: "/books/{id}"
+    };
+    option (gorm.method).object_type = "Book";
+  }
+
   rpc GetVersion (google.protobuf.Empty) returns (VersionResponse) {
-    // TODO: Provide mappings between REST endpoints and service methods.
     option (google.api.http) = {
       get: "/version"
     };

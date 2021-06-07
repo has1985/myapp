@@ -237,6 +237,10 @@ github.com/infobloxopen/atlas-app-toolkit v0.0.0-20180810144038-3237ef051031/go.
 github.com/infobloxopen/atlas-app-toolkit v0.24.1 h1:32uOgZRDcpUfnBMQCWrx7gn3eUo0HhcZu6YTy1yXpS4=
 github.com/infobloxopen/atlas-app-toolkit v0.24.1/go.mod h1:Pv4B9FcLYpli96gl5crQ6+aD/2W3igpss95fk3kWt5c=
 github.com/infobloxopen/go-trees v0.0.0-20180608122459-a1e500cde93c/go.mod h1:PcNJqIlcX/dj3DTG/+QQnRvSgTMG6CLpRMjWcv4+J6w=
+github.com/infobloxopen/protoc-gen-atlas-query-validate v0.5.1 h1:rvBbIOveRXsq/BpEOSPUH8A/Ul0sWBugNLP5b8rP6Ks=
+github.com/infobloxopen/protoc-gen-atlas-query-validate v0.5.1/go.mod h1:twm2xhXP5FicP4JyRVXcLuaWAEp+IwVYHdCkm6uogCI=
+github.com/infobloxopen/protoc-gen-atlas-validate v0.4.1 h1:xdkjh07eTMJ+H0oQK7nBeLzxRpi6A/pTjydVy6nV5N0=
+github.com/infobloxopen/protoc-gen-atlas-validate v0.4.1/go.mod h1:EDXN2QJ7Qto8UwfBAaI9hTIJFvk39pFrFaejtEBqQRo=
 github.com/infobloxopen/protoc-gen-gorm v0.20.1 h1:xvTsbfUNxk9JIQwrQ/rCGJQxLyyi2IcxCMm3zixZrdE=
 github.com/infobloxopen/protoc-gen-gorm v0.20.1/go.mod h1:06fkQkck4VxEgGD8srTeJTMhLf5O0rgnka+9gota0pI=
 github.com/infobloxopen/themis v0.0.0-20180709114455-d62bb103665c/go.mod h1:HBjRUK4sZC1j+43qyDUANbgEZCiULauOChUFuW51OZE=

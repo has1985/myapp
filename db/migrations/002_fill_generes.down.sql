@@ -1,0 +1,5 @@
+BEGIN;
+
+DELETE FROM genres WHERE id IN (1,2,3);
+
+COMMIT;

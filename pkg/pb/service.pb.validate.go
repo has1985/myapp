@@ -33,6 +33,148 @@ var (
 	_ = ptypes.DynamicAny{}
 )
 
+// Validate checks the field values on Genre with the rules defined in the
+// proto definition for this message. If any rules are violated, an error is returned.
+func (m *Genre) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	return nil
+}
+
+// GenreValidationError is the validation error returned by Genre.Validate if
+// the designated constraints aren't met.
+type GenreValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GenreValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GenreValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GenreValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GenreValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GenreValidationError) ErrorName() string { return "GenreValidationError" }
+
+// Error satisfies the builtin error interface
+func (e GenreValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGenre.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GenreValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GenreValidationError{}
+
+// Validate checks the field values on Book with the rules defined in the proto
+// definition for this message. If any rules are violated, an error is returned.
+func (m *Book) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	// no validation rules for Price
+
+	// no validation rules for Genre
+
+	// no validation rules for Amount
+
+	return nil
+}
+
+// BookValidationError is the validation error returned by Book.Validate if the
+// designated constraints aren't met.
+type BookValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e BookValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e BookValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e BookValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e BookValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e BookValidationError) ErrorName() string { return "BookValidationError" }
+
+// Error satisfies the builtin error interface
+func (e BookValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sBook.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = BookValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = BookValidationError{}
+
 // Validate checks the field values on VersionResponse with the rules defined
 // in the proto definition for this message. If any rules are violated, an
 // error is returned.
@@ -99,3 +241,776 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = VersionResponseValidationError{}
+
+// Validate checks the field values on CreateBookRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *CreateBookRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CreateBookRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateBookRequestValidationError is the validation error returned by
+// CreateBookRequest.Validate if the designated constraints aren't met.
+type CreateBookRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateBookRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateBookRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateBookRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateBookRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateBookRequestValidationError) ErrorName() string {
+	return "CreateBookRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateBookRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateBookRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateBookRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateBookRequestValidationError{}
+
+// Validate checks the field values on CreateBookResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateBookResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for Id
+
+	return nil
+}
+
+// CreateBookResponseValidationError is the validation error returned by
+// CreateBookResponse.Validate if the designated constraints aren't met.
+type CreateBookResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateBookResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateBookResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateBookResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateBookResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateBookResponseValidationError) ErrorName() string {
+	return "CreateBookResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateBookResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateBookResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateBookResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateBookResponseValidationError{}
+
+// Validate checks the field values on ReadBookRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *ReadBookRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for Id
+
+	return nil
+}
+
+// ReadBookRequestValidationError is the validation error returned by
+// ReadBookRequest.Validate if the designated constraints aren't met.
+type ReadBookRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadBookRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadBookRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadBookRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadBookRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadBookRequestValidationError) ErrorName() string { return "ReadBookRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ReadBookRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadBookRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadBookRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadBookRequestValidationError{}
+
+// Validate checks the field values on ReadBookResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *ReadBookResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReadBookResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadBookResponseValidationError is the validation error returned by
+// ReadBookResponse.Validate if the designated constraints aren't met.
+type ReadBookResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadBookResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadBookResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadBookResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadBookResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadBookResponseValidationError) ErrorName() string { return "ReadBookResponseValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ReadBookResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadBookResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadBookResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadBookResponseValidationError{}
+
+// Validate checks the field values on UpdateBookRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *UpdateBookRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateBookRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateBookRequestValidationError is the validation error returned by
+// UpdateBookRequest.Validate if the designated constraints aren't met.
+type UpdateBookRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateBookRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateBookRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateBookRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateBookRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateBookRequestValidationError) ErrorName() string {
+	return "UpdateBookRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateBookRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateBookRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateBookRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateBookRequestValidationError{}
+
+// Validate checks the field values on UpdateBookResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateBookResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateBookResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateBookResponseValidationError is the validation error returned by
+// UpdateBookResponse.Validate if the designated constraints aren't met.
+type UpdateBookResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateBookResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateBookResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateBookResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateBookResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateBookResponseValidationError) ErrorName() string {
+	return "UpdateBookResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateBookResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateBookResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateBookResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateBookResponseValidationError{}
+
+// Validate checks the field values on ListBookRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *ListBookRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListBookRequestValidationError{
+				field:  "Filter",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListBookRequestValidationError{
+				field:  "OrderBy",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListBookRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListBookRequestValidationError{
+				field:  "Paging",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListBookRequestValidationError is the validation error returned by
+// ListBookRequest.Validate if the designated constraints aren't met.
+type ListBookRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListBookRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListBookRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListBookRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListBookRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListBookRequestValidationError) ErrorName() string { return "ListBookRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ListBookRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListBookRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListBookRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListBookRequestValidationError{}
+
+// Validate checks the field values on ListBookResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *ListBookResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	for idx, item := range m.GetResults() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ListBookResponseValidationError{
+					field:  fmt.Sprintf("Results[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListBookResponseValidationError{
+				field:  "Page",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListBookResponseValidationError is the validation error returned by
+// ListBookResponse.Validate if the designated constraints aren't met.
+type ListBookResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListBookResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListBookResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListBookResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListBookResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListBookResponseValidationError) ErrorName() string { return "ListBookResponseValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ListBookResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListBookResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListBookResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListBookResponseValidationError{}
+
+// Validate checks the field values on DeleteBookRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *DeleteBookRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for Id
+
+	return nil
+}
+
+// DeleteBookRequestValidationError is the validation error returned by
+// DeleteBookRequest.Validate if the designated constraints aren't met.
+type DeleteBookRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteBookRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteBookRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteBookRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteBookRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteBookRequestValidationError) ErrorName() string {
+	return "DeleteBookRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteBookRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteBookRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteBookRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteBookRequestValidationError{}
+
+// Validate checks the field values on DeleteBookResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteBookResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	return nil
+}
+
+// DeleteBookResponseValidationError is the validation error returned by
+// DeleteBookResponse.Validate if the designated constraints aren't met.
+type DeleteBookResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteBookResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteBookResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteBookResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteBookResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteBookResponseValidationError) ErrorName() string {
+	return "DeleteBookResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteBookResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteBookResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteBookResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteBookResponseValidationError{}

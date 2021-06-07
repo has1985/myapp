@@ -1,0 +1,7 @@
+BEGIN;
+
+DROP TABLE books ;
+
+DROP TABLE genres ;
+
+COMMIT;
